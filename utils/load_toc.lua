@@ -3,12 +3,16 @@ if skip == nil then
     skip = {}
 end
 
+-- Aliases required for LibStub
+_G.debugstack = debug.traceback
+_G.strmatch = string.match
+
 local function read_xml(file_name)
     local files = {}
     local folder = file_name:match("^(.+)/.+$")
     for line in io.lines(file_name) do
-        local file = line:match('.*Script file="(.+)".*$')
-        if file ~= nil then
+        local action, file = line:match('<(%a+) file="(.+)".*$')
+        if file ~= nil and action == 'Script' then
             file = file:gsub('\\', '/')
             table.insert(files, folder .. '/' .. file)
         end
