@@ -17,7 +17,16 @@ local function read_xml(file_name)
 end
 
 local function load_file(file_path)
+    local basename = file_path:gsub('.*/', '')
+    for key, value in pairs(skip) do
+        if key == basename or value == basename then
+            print('Skip file ' .. file_path)
+            return
+        end
+    end
+
     local file = loadfile(file_path)
+
     if file ~= nil then
         print('Loaded ' .. file_path)
         file()
@@ -33,8 +42,6 @@ for line in io.lines(filename) do
         line = line:gsub('lua.*', 'lua')
         line = line:gsub('xml.*', 'xml')
         local file_path = '../' .. line
-
-        local basename = line:gsub('.*/', '')
         local extension = line:match("^.*%.(%a+)$")
 
         if extension == 'xml' then
@@ -43,10 +50,8 @@ for line in io.lines(filename) do
                 --print('File from XML: ' .. file)
                 load_file(file)
             end
-        elseif skip[basename] ~= true then
-            load_file(file_path)
         else
-            print('Skip file ' .. file_path)
+            load_file(file_path)
         end
     end
 end
