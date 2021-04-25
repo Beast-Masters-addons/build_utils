@@ -27,9 +27,11 @@ def build_lua_table(source: dict, name='data', indent_size=4, indent_level=1) ->
             else:
                 for item in value:
                     if type(item) == str:
-                        table += '"%s",' % item
+                        table += ' "%s",' % item
                     elif type(item) == int:
                         table += ' %d,' % item
+                    elif item is None:
+                        table += ' nil,'
                     else:
                         raise Exception('Unhandled type: ' + type(item))
                 table = table[:-1]
