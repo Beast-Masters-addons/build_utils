@@ -54,3 +54,41 @@ def build_lua_table(source: dict, name='data', indent_size=4, indent_level=1) ->
         table += ',\n'
     table += ' ' * indent_size * (indent_level - 1) + '}'
     return table
+
+
+def build_lua_list(source: list, name='data', indent_size=4, indent_level=1):
+    if name:
+        table = '%s = {\n' % name
+    else:
+        table = '{\n'
+
+    for value in source:
+        table += ' ' * indent_size * indent_level
+        if type(value) == str:
+            table += '"%s"' % value
+        elif type(value) == int:
+            table += '%d' % value
+        elif type(value) == list:
+            table += '{'
+            if len(value) == 0:
+                table += '}'
+            else:
+                for item in value:
+                    if type(item) == str:
+                        table += ' "%s",' % item
+                    elif type(item) == int:
+                        table += ' %d,' % item
+                    elif item is None:
+                        table += ' nil,'
+                    else:
+                        raise Exception('Unhandled type: ' + type(item))
+                table = table[:-1]
+                table += ' }'
+        elif type(value) == dict:
+            table += build_lua_table(value, None, indent_size=indent_size, indent_level=indent_level + 1)
+        else:
+            raise Exception('Unhandled type: %s' % type(value))
+
+        table += ',\n'
+    table += ' ' * indent_size * (indent_level - 1) + '}'
+    return table
