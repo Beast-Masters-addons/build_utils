@@ -11,9 +11,14 @@ def build_lua_table(source: dict, name='data', indent_size=4, indent_level=1) ->
         table = '%s = {\n' % name
     else:
         table = '{\n'
+
     for key, value in source.items():
         if type(key) == int:
             key = '[%d]' % key
+        elif type(key) == str:
+            key = '["%s"]' % key
+        else:
+            raise ValueError('Unsupported key type: %s' % type(key))
 
         table += ' ' * indent_size * indent_level
         if type(value) == str:
