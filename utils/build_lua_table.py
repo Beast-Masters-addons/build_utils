@@ -25,6 +25,11 @@ def build_lua_table(source: dict, name='data', indent_size=4, indent_level=1) ->
             table += '%s = "%s"' % (key, value)
         elif type(value) == int:
             table += '%s = %d' % (key, value)
+        elif type(value) == bool:
+            if value:
+                table += '%s = true' % key
+            else:
+                table += '%s = false' % key
         elif type(value) == list:
             table += '%s = {' % key
             if len(value) == 0:
