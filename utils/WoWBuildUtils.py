@@ -15,13 +15,13 @@ class WoWBuildUtils:
             self.data_folder = os.path.join(os.path.dirname(__file__), '..', 'data')
         self.user_agent = 'datagutten/WoWBuildUtils'
 
-    def get(self, url, headers=None, options=None):
+    def get(self, url, headers=None):
         if headers is None:
             headers = {}
         if 'User-Agent' not in headers:
             headers['User-Agent'] = self.user_agent
 
-        return requests.get(url, headers=headers, options=options)
+        return requests.get(url, headers=headers)
 
     def file_name(self, name, extension):
         return os.path.join(self.data_folder, '%s.%s' % (name, extension))

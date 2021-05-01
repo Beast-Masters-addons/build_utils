@@ -9,7 +9,7 @@ from . import WoWBuildUtils
 
 
 class Wowhead(WoWBuildUtils):
-    def get(self, url=None, domain=None, element=None, key=None, uri=None):
+    def query(self, url=None, domain=None, element=None, key=None, uri=None):
         if not domain:
             if os.getenv('WOWHEAD_DOMAIN'):
                 domain = os.getenv('WOWHEAD_DOMAIN')
