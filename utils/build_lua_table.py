@@ -22,6 +22,7 @@ def build_lua_table(source: dict, name='data', indent_size=4, indent_level=1) ->
 
         table += ' ' * indent_size * indent_level
         if type(value) == str:
+            value = value.replace('"', '\\"')
             table += '%s = "%s"' % (key, value)
         elif type(value) == int:
             table += '%s = %d' % (key, value)
