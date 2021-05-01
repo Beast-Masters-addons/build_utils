@@ -1,3 +1,3 @@
 from .utils.build_lua_table import build_lua_table
 from .utils.build_lua_table import build_lua_list
-from .utils.WoWBuildUtils import WoWBuildUtils
+from .utils import WoWBuildUtils
