@@ -4,7 +4,7 @@ import re
 
 import requests
 
-from utils import build_lua_list, build_lua_table
+from . import build_lua_list, build_lua_table
 
 
 class WoWBuildUtils:
