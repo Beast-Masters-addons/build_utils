@@ -2,6 +2,7 @@ local filename, skip = ...
 if skip == nil then
     skip = {}
 end
+_G['AddonTable'] = {}
 
 -- Aliases required for LibStub
 _G.debugstack = debug.traceback
@@ -33,7 +34,7 @@ local function load_file(file_path)
 
     if file ~= nil then
         print('Loaded ' .. file_path)
-        file()
+        file('TestAddon', _G['AddonTable'])
     else
         error('Unable to load file ' .. file_path)
     end
