@@ -13,9 +13,16 @@ local function read_xml(file_name)
     local folder = file_name:match("^(.+)/.+$")
     for line in io.lines(file_name) do
         local action, file = line:match('<(%a+) file="(.+)".*$')
-        if file ~= nil and action == 'Script' then
+        if file ~= nil then
             file = file:gsub('\\', '/')
-            table.insert(files, folder .. '/' .. file)
+            if action == 'Script' then
+                table.insert(files, folder .. '/' .. file)
+            elseif action == 'Include' then
+                print('Include', file, file_name)
+                for _, sub_file in ipairs(read_xml(folder .. '/' .. file)) do
+                    table.insert(files, sub_file)
+                end
+            end
         end
     end
     return files
@@ -41,12 +48,13 @@ local function load_file(file_path)
 end
 
 for line in io.lines(filename) do
+    local path, basename = filename:match('(.+/)(.+toc)')
     local first = line:sub(1, 1)
     if first ~= '#' and line:len() > 1 then
         line = line:gsub('\\', '/')
         line = line:gsub('lua.*', 'lua')
         line = line:gsub('xml.*', 'xml')
-        local file_path = '../' .. line
+        local file_path = path .. line
         local extension = line:match("^.*%.(%a+)$")
 
         if extension == 'xml' then
