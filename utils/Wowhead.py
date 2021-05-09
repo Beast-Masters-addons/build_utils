@@ -36,18 +36,21 @@ class Wowhead(WoWBuildUtils):
         return json_string
 
     @staticmethod
+    def get_js_variable(js, variable):
+        matches = re.search(r'(?:var|let|const)\s?%s=(.+?);' % variable, js)
+        return matches.group(1)
+
+    @staticmethod
     def js_array_to_json(array, name=None):
         if not name:
             matches = re.search(r'var (\w+)\s?=', array)
             name = matches.group(1)
         js = array
         js += ';\nconsole.log(JSON.stringify(%s))' % name
-        with open('temp.js', 'w') as fp:
-            fp.write(js)
-            json_string = subprocess.check_output(['node', 'temp.js'])
-            data = json.loads(json_string)
-        os.unlink('temp.js')
-        return data
+        p = subprocess.Popen(['node'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        json_string = p.communicate(input=js.encode())[0]
+
+        return json.loads(json_string)
 
     @staticmethod
     def get_list_view(response: requests.Response, list_id):
