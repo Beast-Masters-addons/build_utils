@@ -1,3 +1,19 @@
+def handle_value(item):
+    if type(item) == str:
+        return '"%s"' % item.replace('"', '\\"')
+    elif type(item) == int:
+        return '%d' % item
+    elif item is None:
+        return 'nil'
+    elif type(item) == bool:
+        if item:
+            return 'true'
+        else:
+            return 'false'
+    else:
+        raise ValueError('Unsupported value type: %s' % type(item))
+
+
 def build_lua_table(source: dict, name='data', indent_size=4, indent_level=1) -> str:
     """
     Convert a python dict to a lua table
@@ -37,20 +53,14 @@ def build_lua_table(source: dict, name='data', indent_size=4, indent_level=1) ->
                 table += '}'
             else:
                 for item in value:
-                    if type(item) == str:
-                        table += ' "%s",' % item
-                    elif type(item) == int:
-                        table += ' %d,' % item
-                    elif item is None:
-                        table += ' nil,'
-                    else:
-                        raise Exception('Unhandled type: ' + type(item))
+                    table += ' %s,' % handle_value(item)
+
                 table = table[:-1]
                 table += ' }'
         elif type(value) == dict:
             table += build_lua_table(value, key, indent_size=indent_size, indent_level=indent_level + 1)
         else:
-            raise Exception('Unhandled type: %s' % type(value))
+            table += '%s = %s' % (key, handle_value(value))
 
         table += ',\n'
     table += ' ' * indent_size * (indent_level - 1) + '}'
