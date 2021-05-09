@@ -27,8 +27,11 @@ class WoWBuildUtils:
         return os.path.join(self.data_folder, '%s.%s' % (name, extension))
 
     def save(self, data, name, save_lua=True, save_json=True):
+        if not os.path.exists(self.data_folder):
+            os.mkdir(self.data_folder)
+
         if save_lua:
-            with open(self.file_name(name, 'lua'), 'w') as fp:
+            with open(self.file_name(name, 'lua'), 'w', encoding="utf-8") as fp:
                 if type(data) == dict:
                     fp.write(build_lua_table(data, "_G['%s']" % name))
                 elif type(data) == list:
