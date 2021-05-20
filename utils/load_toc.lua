@@ -13,7 +13,8 @@ local function read_xml(file_name)
     local folder = file_name:match("^(.+)/.+$")
     for line in io.lines(file_name) do
         local action, file = line:match('<(%a+) file="(.+)".*$')
-        if file ~= nil then
+        local comment = line:match('<!--')
+        if file ~= nil and comment == nil then
             file = file:gsub('\\', '/')
             if action == 'Script' then
                 table.insert(files, folder .. '/' .. file)
