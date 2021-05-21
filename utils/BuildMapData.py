@@ -1,4 +1,4 @@
-from .WoWTables import WoWTables
+from WoWTables import WoWTables
 
 
 class BuildMapData(WoWTables):

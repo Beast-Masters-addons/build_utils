@@ -1,6 +1,6 @@
 import csv
 
-from . import WoWBuildUtils
+from WoWBuildUtils import WoWBuildUtils
 
 
 class WoWTables(WoWBuildUtils):
