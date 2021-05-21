@@ -33,3 +33,8 @@ end
 function IsLoggedIn()
     return false
 end
+
+C_ChromieTime = {}
+function C_ChromieTime.GetChromieTimeExpansionOptions()
+    return { { alreadyOn = false } }
+end
