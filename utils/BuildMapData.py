@@ -1,13 +1,7 @@
-import os
-
-import WoWBuildUtils
+from .WoWTables import WoWTables
 
 
-class BuildMapData(WoWBuildUtils):
-    def __init__(self):
-        data_folder = os.path.join(os.path.dirname(__file__), '..', 'data')
-        super().__init__(data_folder)
-
+class BuildMapData(WoWTables):
     def map_to_area(self):
         table = self.get_db_table('uimapassignment')
         maps = {}
