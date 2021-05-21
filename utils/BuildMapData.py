@@ -50,7 +50,7 @@ class BuildMapData(WoWTables):
 if __name__ == "__main__":
     version = os.getenv('GAME_VERSION')
     if version == 'classic':
-        build = '1.9.4.5086'
+        build = '1.13.7.38704'
     elif version == 'bcc':
         build = '2.5.1.38757'
     else:
