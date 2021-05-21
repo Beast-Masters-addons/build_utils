@@ -46,10 +46,10 @@ function _G.C_Map.GetMapInfo(uiMapID)
         return
     end
     return { mapID = uiMapID,
-             name = map['MapName_lang'],
-             mapType = map['MapType'],
-             parentMapID = map['ParentMapID'],
-             flags = map['Flags[0]']
+             name = map['Name_lang'],
+             mapType = map['Type'],
+             parentMapID = map['ParentUiMapID'],
+             flags = map['Flags']
     }
 end
 
