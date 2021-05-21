@@ -1,3 +1,5 @@
+import os
+
 from WoWTables import WoWTables
 
 
@@ -46,8 +48,15 @@ class BuildMapData(WoWTables):
 
 
 if __name__ == "__main__":
-    build = BuildMapData()
-    build.map_to_area()
+    version = os.getenv('GAME_VERSION')
+    if version == 'classic':
+        build = '1.9.4.5086'
+    elif version == 'bcc':
+        build = '2.5.1.38757'
+    else:
+        build = '9.1.0.38709'
+    build = BuildMapData(build_number=build)
+
     build.save(build.map_to_area(), 'MapToZone')
     build.save(build.map_info(), 'MapInfo')
     build.save(build.area_info(), 'AreaInfo')
