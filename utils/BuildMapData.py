@@ -16,7 +16,7 @@ class BuildMapData(WoWTables):
         return maps
 
     def map_info(self):
-        table = self.get_db_table('map')
+        table = self.get_db_table('uimap')
         maps = {}
         for row in table:
             maps[int(row['ID'])] = dict(row)
