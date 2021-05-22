@@ -67,8 +67,10 @@ function C_Map.GetWorldPosFromMapPos(uiMapID, mapPosition)
 
 end
 
+---Returns the position of the given unit for a map. Only works for the player and party members.
+---https://wowpedia.fandom.com/wiki/API_C_Map.GetPlayerMapPosition
 function C_Map.GetPlayerMapPosition(uiMapID, unitToken)
-
+    return CreateVector2D(0.54766619205475, 0.54863452911377)
 end
 
 function _G.GetLocale()
