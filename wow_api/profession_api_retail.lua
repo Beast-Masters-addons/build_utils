@@ -72,3 +72,7 @@ function _G.C_TradeSkillUI.GetRecipeInfo(recipeID)
         error('Invalid recipeId ' .. recipeID)
     end
 end
+
+function C_TradeSkillUI.GetCategoryInfo(categoryID)
+    return nil
+end
