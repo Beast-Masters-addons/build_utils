@@ -1,6 +1,8 @@
 --loadfile('MapInfo.lua')()
 --loadfile('AreaInfo.lua')()
 
+local is_classic = os.getenv('GAME_VERSION') ~= 'retail'
+
 _G.C_Map = {}
 function _G.C_Map.GetAreaInfo(areaID)
     if areaID == 1 then
@@ -12,7 +14,11 @@ end
 
 function _G.C_Map.GetBestMapForUnit(unit)
     if unit == 'player' then
-        return 1434
+        if is_classic then
+            return 1434 --Stranglethorn Vale
+        else
+            return 210 --The Cape of Stranglethorn
+        end
     end
 end
 function _G.C_Map.GetMapChildrenInfo(uiMapID, mapType, allDescendants)
