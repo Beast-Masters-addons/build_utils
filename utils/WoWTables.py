@@ -1,4 +1,5 @@
 import csv
+import os
 
 from WoWBuildUtils import WoWBuildUtils
 
@@ -8,6 +9,16 @@ class WoWTables(WoWBuildUtils):
         super().__init__(data_folder=data_folder)
         self.build_number = build_number
         self.locale = locale
+
+    @staticmethod
+    def get_build():
+        version = os.getenv('GAME_VERSION')
+        if version == 'classic':
+            return '1.13.7.38704'
+        elif version == 'bcc':
+            return '2.5.1.38757'
+        else:
+            return '9.1.0.38709'
 
     def get_db_table(self, table):
         url = 'https://wow.tools/dbc/api/export/?name=%s&build=%s' % (table, self.build_number)
