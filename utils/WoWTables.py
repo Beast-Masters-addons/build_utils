@@ -11,8 +11,8 @@ class WoWTables(WoWBuildUtils):
         self.locale = locale
 
     @staticmethod
-    def get_build():
-        version = os.getenv('GAME_VERSION')
+    def get_build(game_version=None):
+        version = game_version or os.getenv('GAME_VERSION')
         if version == 'classic':
             return '1.13.7.38704'
         elif version == 'bcc':
