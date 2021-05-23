@@ -76,3 +76,16 @@ end
 function C_TradeSkillUI.GetCategoryInfo(categoryID)
     return nil
 end
+
+---Returns spell tab indices of the player's current professions
+function _G.GetProfessions()
+    return 6, 9, 10, 8, 7
+end
+
+function _G.GetProfessionInfo(index)
+    if index == 6 then
+        return 'Leatherworking', 136247, 65, 100, 1, 120, 165, 0, 10, 0, 'Legion Leatherworking'
+    else
+        return 'test'
+    end
+end
