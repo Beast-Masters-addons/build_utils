@@ -4,7 +4,10 @@ import re
 
 import requests
 
-from build_lua_table import build_lua_list, build_lua_table
+try:
+    from build_lua_table import build_lua_list, build_lua_table
+except ImportError:
+    from .build_lua_table import build_lua_list, build_lua_table
 
 
 class WoWBuildUtils:

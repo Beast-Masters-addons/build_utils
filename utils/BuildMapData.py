@@ -1,6 +1,9 @@
 import os
 
-from WoWTables import WoWTables
+try:
+    from WoWTables import WoWTables
+except ImportError:
+    from .WoWTables import WoWTables
 
 
 class BuildMapData(WoWTables):
