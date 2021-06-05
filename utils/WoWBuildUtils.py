@@ -55,7 +55,7 @@ class WoWBuildUtils:
                             headers={
                                 'Referer': 'https://www.townlong-yak.com/framexml/live/Helix/ArtTextureID.lua'})
         textures = {}
-        matches = re.finditer(r'\[([0-9]+)]="[\w/]+/(\w+)"', response.text)
+        matches = re.finditer(r'\[([0-9]+)]="[\w/]+/([\w\s]+)"', response.text)
         for match in matches:
             file = match.group(2).lower()
             textures[file] = int(match.group(1))
