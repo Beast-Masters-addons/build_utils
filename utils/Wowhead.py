@@ -59,7 +59,7 @@ class Wowhead(WoWBuildUtils):
         if not match:
             raise ValueError('No list with id %s' % list_id)
         try:
-            return json.loads(Wowhead.clean_json(match[1]))
+            return Wowhead.js_array_to_json('const listview = ' + match[1], 'listview')
         except json.decoder.JSONDecodeError as e:
             print(match[1])
             raise e
