@@ -9,30 +9,21 @@ _G.debugstack = debug.traceback
 _G.strmatch = string.match
 
 local function read_xml(file_name)
-    local xml2lua = require("xml2lua")
-    --Uses a handler that converts the XML to a Lua table
-    local handler = require("xmlhandler.tree")
-
     local files = {}
     local folder = file_name:match("^(.+)/.+$")
-
-    local fp = io.open(file_name)
-    if fp == nil then
-        error(('XML file "%s" not found'):format(file_name))
-    end
-    local xml = fp:read('*a')
-    local parser = xml2lua.parser(handler)
-    parser:parse(xml)
-
-    for _, p in pairs(handler.root.Ui.Script) do
-        local file = p._attr.file:gsub('\\', '/')
-        table.insert(files, folder .. '/' .. file)
-    end
-    for _, p in pairs(handler.root.Ui.Include) do
-        local included_file = p._attr.file:gsub('\\', '/')
-        print(('%s: Include %s'):format(file_name, included_file))
-        for _, sub_file in ipairs(read_xml(folder .. '/' .. included_file)) do
-            table.insert(files, sub_file)
+    for line in io.lines(file_name) do
+        local action, file = line:match('<(%a+) file="(.+)".*$')
+        local comment = line:match('<!--')
+        if file ~= nil and comment == nil then
+            file = file:gsub('\\', '/')
+            if action == 'Script' then
+                table.insert(files, folder .. '/' .. file)
+            elseif action == 'Include' then
+                print(('%s: Include %s'):format(file_name, file))
+                for _, sub_file in ipairs(read_xml(folder .. '/' .. file)) do
+                    table.insert(files, sub_file)
+                end
+            end
         end
     end
     return files
