@@ -64,7 +64,12 @@ for line in io.lines(filename) do
         line = line:gsub('\\', '/')
         line = line:gsub('lua.*', 'lua')
         line = line:gsub('xml.*', 'xml')
-        local file_path = path .. line
+        local file_path
+        if first ~= '/' then
+            file_path = path .. line
+        else
+            file_path = line
+        end
         local extension = line:match("^.*%.(%a+)$")
 
         if extension == 'xml' then
