@@ -27,6 +27,8 @@ end
 
 if os.getenv('GAME_VERSION') == 'bcc' then
     MAX_PLAYER_LEVEL = 70
+elseif os.getenv('GAME_VERSION') == 'retail' then
+    MAX_PLAYER_LEVEL = 50
 else
     MAX_PLAYER_LEVEL = 60
 end
