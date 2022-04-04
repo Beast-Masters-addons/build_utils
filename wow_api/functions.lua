@@ -38,3 +38,7 @@ C_ChromieTime = {}
 function C_ChromieTime.GetChromieTimeExpansionOptions()
     return { { alreadyOn = false } }
 end
+
+function DevTools_Dump(value)
+    require 'pl.pretty'.dump(value)
+end
