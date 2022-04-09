@@ -111,3 +111,19 @@ end
 function frame:SetAllPoints(frame)
 
 end
+
+function frame:HasFixedFrameLevel()
+
+end
+
+function frame:HasFixedFrameStrata()
+
+end
+
+function frame:SetFixedFrameLevel(...)
+
+end
+
+function frame:SetFixedFrameStrata(...)
+
+end
