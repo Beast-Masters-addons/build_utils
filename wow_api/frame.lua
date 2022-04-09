@@ -107,3 +107,7 @@ end
 function frame:ClearAllPoints()
 
 end
+
+function frame:SetAllPoints(frame)
+
+end
