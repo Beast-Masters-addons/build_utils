@@ -46,6 +46,11 @@ function _G.GetTradeSkillReagentItemLink(skillId, reagentId)
     end
 end
 
+---https://wowpedia.fandom.com/wiki/API_GetTradeSkillRecipeLink
+function _G.GetTradeSkillRecipeLink(index)
+    return '\124cffffd000\124Henchant:16153\124h[Mining: Smelt Thorium]\124h\124r'
+end
+
 function _G.GetTradeSkillReagentInfo(tradeSkillRecipeId, reagentId)
     if tradeSkillRecipeId == 2 or 3447 then
         if reagentId == 1 then
