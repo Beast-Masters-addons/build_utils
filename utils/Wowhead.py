@@ -11,7 +11,13 @@ from . import WoWBuildUtils
 class Wowhead(WoWBuildUtils):
     def query(self, url=None, domain=None, element=None, key=None, uri=None):
         if not domain:
-            if os.getenv('WOWHEAD_DOMAIN'):
+            if os.getenv('GAME_VERSION'):
+                domains = {'classic': 'classic', 'bcc': 'tbc', 'wrath': 'wotlk'}
+                if os.getenv('GAME_VERSION') not in domains:
+                    raise ValueError('Unknown game version %s' % os.getenv('GAME_VERSION'))
+                else:
+                    domain = domains[os.getenv('GAME_VERSION')]
+            elif os.getenv('WOWHEAD_DOMAIN'):
                 domain = os.getenv('WOWHEAD_DOMAIN')
             else:
                 domain = 'tbc'
