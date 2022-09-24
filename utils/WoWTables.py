@@ -20,6 +20,8 @@ class WoWTables(WoWBuildUtils):
             return '1.4.3.42926'
         elif version == 'bcc':
             return '2.5.4.42940'
+        elif version == 'wrath':
+            return '3.4.0.45770'
         else:
             return '9.2.5.42850'
 

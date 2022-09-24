@@ -56,6 +56,8 @@ if __name__ == "__main__":
         build = '1.13.7.38704'
     elif version == 'bcc':
         build = '2.5.1.38757'
+    elif version == 'wrath':
+        build = '3.4.0.45770'
     else:
         build = '9.1.0.38709'
     build = BuildMapData(build_number=build)
