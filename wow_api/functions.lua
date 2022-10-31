@@ -42,3 +42,7 @@ end
 function DevTools_Dump(value)
     require 'pl.pretty'.dump(value)
 end
+
+function GetAddOnInfo(addon)
+    return addon
+end
