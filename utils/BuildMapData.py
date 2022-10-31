@@ -59,7 +59,7 @@ if __name__ == "__main__":
     elif version == 'wrath':
         build = '3.4.0.45770'
     else:
-        build = '9.1.0.38709'
+        build = '10.0.0.46366'
     build = BuildMapData(build_number=build)
 
     build.save(build.map_to_area(), 'MapToZone')
