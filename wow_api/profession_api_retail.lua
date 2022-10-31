@@ -77,6 +77,18 @@ function C_TradeSkillUI.GetCategoryInfo(categoryID)
     return nil
 end
 
+function C_TradeSkillUI.GetProfessionInfoBySkillLineID(index)
+    return {
+        ['skillLevel'] = 0,
+        ['professionID'] = 0,
+        ['skillModifier'] = 0,
+        ['isPrimaryProfession'] = false,
+        ['professionName'] = "",
+        ['maxSkillLevel'] = 0,
+        ['expansionName'] = ""
+    }
+end
+
 ---Returns spell tab indices of the player's current professions
 function _G.GetProfessions()
     return 6, 9, 10, 8, 7
