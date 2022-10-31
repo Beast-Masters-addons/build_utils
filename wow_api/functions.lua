@@ -44,5 +44,5 @@ function DevTools_Dump(value)
 end
 
 function GetAddOnInfo(addon)
-    return addon
+    return addon, addon
 end
