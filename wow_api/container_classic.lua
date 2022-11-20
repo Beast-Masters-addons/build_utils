@@ -4,15 +4,16 @@ end
 
 function GetContainerItemInfo(containerIndex, slotIndex)
     return {
-        134414,
-        1,
-        false,
-        1,
-        false,
-        false,
-        "|cffffffff|Hitem:6948::::::::42:::::|h[Hearthstone]|h|r",
-        false,
-        true,
-        6948,
+        134414, --icon
+        1, --itemCount
+        false, --locked
+        1, --quality
+        false, --readable
+        false, --lootable
+        "|cffffffff|Hitem:6948::::::::42:::::|h[Hearthstone]|h|r", --itemLink
+        false, --isFiltered
+        true, --noValue
+        6948, --itemId
+        true, --isBound
     }
 end
