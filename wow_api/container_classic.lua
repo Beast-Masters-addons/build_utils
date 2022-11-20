@@ -1,5 +1,5 @@
 function GetContainerNumSlots(slot)
-    return 10
+    return 30
 end
 
 function GetContainerItemInfo(containerIndex, slotIndex)
