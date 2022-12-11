@@ -29,8 +29,8 @@ class WoWTablesCustom(WoWTables):
             response = self.get(url)
             if response.status_code != 200:
                 raise RuntimeError('Status code %d, URL %s' % (response.status_code, url))
-            with open(file, 'w') as fp:
-                fp.write(response.text)
+            with open(file, 'wb') as fp:
+                fp.write(response.content)
 
-        with open(file) as fp2:
+        with open(file, errors='ignore') as fp2:
             return csv.DictReader(fp2.read().splitlines())
