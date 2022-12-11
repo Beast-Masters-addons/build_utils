@@ -1,12 +1,14 @@
 import os
 
+from utils.WowTablesCustom import WoWTablesCustom
+
 try:
     from WoWTables import WoWTables
 except ImportError:
     from .WoWTables import WoWTables
 
 
-class BuildMapData(WoWTables):
+class BuildMapData(WoWTablesCustom):
     def map_to_area(self):
         table = self.get_db_table('uimapassignment')
         maps = {}
@@ -60,7 +62,7 @@ if __name__ == "__main__":
         build = '3.4.0.45770'
     else:
         build = '10.0.0.46366'
-    build = BuildMapData(build_number=build)
+    build = BuildMapData(build_number=build, game=version)
 
     build.save(build.map_to_area(), 'MapToZone')
     build.save(build.map_info(), 'MapInfo')

@@ -8,8 +8,9 @@ except ImportError:
 
 
 class WoWTables(WoWBuildUtils):
-    def __init__(self, data_folder=None, build_number='2.5.1.38537', locale=None):
+    def __init__(self, data_folder=None, build_number='2.5.1.38537', locale=None, game='wrath'):
         super().__init__(data_folder=data_folder)
+        self.game = game
         self.build_number = build_number
         self.locale = locale
 
