@@ -1,11 +1,11 @@
 import os
 
-from utils.WowTablesCustom import WoWTablesCustom
-
 try:
     from WoWTables import WoWTables
+    from WowTablesCustom import WoWTablesCustom
 except ImportError:
     from .WoWTables import WoWTables
+    from .WowTablesCustom import WoWTablesCustom
 
 
 class BuildMapData(WoWTablesCustom):
