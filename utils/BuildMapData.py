@@ -1,6 +1,9 @@
 import os
 
-from tables import WoWTablesCustom
+try:
+    from utils.tables import WoWTablesCustom
+except ImportError:
+    from .tables import WoWTablesCustom
 
 
 class BuildMapData(WoWTablesCustom):
