@@ -1,7 +1,10 @@
 import csv
 import os
 
-from WoWBuildUtils import WoWBuildUtils
+try:
+    from WoWBuildUtils import WoWBuildUtils
+except ImportError:
+    from ..WoWBuildUtils import WoWBuildUtils
 
 
 class WoWTables(WoWBuildUtils):
