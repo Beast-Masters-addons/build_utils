@@ -3,7 +3,7 @@ import os.path
 
 import requests
 
-from WoWTables import WoWTables
+from .WoWTables import WoWTables
 
 
 class WoWTablesCustom(WoWTables):
