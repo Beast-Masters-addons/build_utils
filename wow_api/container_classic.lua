@@ -16,3 +16,7 @@ function GetContainerItemInfo(containerIndex, slotIndex)
     6948, --itemId
     true --isBound
 end
+
+function PickupContainerItem(containerIndex, slotIndex)
+    return 6948
+end

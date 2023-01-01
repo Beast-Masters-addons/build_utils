@@ -19,3 +19,7 @@ function _G.C_Container.GetContainerItemInfo(containerIndex, slotIndex)
         quality = 1,
     }
 end
+
+function _G.C_Container.PickupContainerItem(containerIndex, slotIndex)
+    return 6948
+end
