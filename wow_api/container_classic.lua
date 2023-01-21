@@ -1,3 +1,7 @@
+function GetContainerNumFreeSlots(slot)
+    return 10
+end
+
 function GetContainerNumSlots(slot)
     return 30
 end
