@@ -1,5 +1,9 @@
 _G.C_Container = {}
 
+function _G.C_Container.GetContainerNumFreeSlots(slot)
+    return 10
+end
+
 function _G.C_Container.GetContainerNumSlots(slot)
     return 30
 end
