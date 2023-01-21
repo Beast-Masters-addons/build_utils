@@ -24,7 +24,7 @@ end
 
 DEFAULT_CHAT_FRAME = {}
 function DEFAULT_CHAT_FRAME:AddMessage(str, r, g, b)
-    print(str)
+    return str, r, g, b
 end
 
 function wipe()
