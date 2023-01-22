@@ -46,3 +46,22 @@ end
 function GetAddOnInfo(addon)
     return addon, addon
 end
+
+function UnitRace(unit)
+    if unit == "player" then
+        return "Night Elf", "NightElf", 4
+    end
+end
+
+---@return string className, classFilename, classID
+function UnitClass(unit)
+    if unit == "player" then
+        return "Hunter", "HUNTER", 3
+    end
+end
+
+function UnitSex(unit)
+    if unit == "player" then
+        return 3
+    end
+end
