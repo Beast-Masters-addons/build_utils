@@ -75,7 +75,7 @@ function UnitName(unit)
 end
 
 function GetRealmName()
-    return "MirageRaceway"
+    return "Mirage Raceway"
 end
 
 function GetSpellInfo(spellId)
