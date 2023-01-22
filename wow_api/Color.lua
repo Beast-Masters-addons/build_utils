@@ -60,3 +60,19 @@ end
 function WrapTextInColorCode(text, colorHexString)
 	return ("|c%s%s|r"):format(colorHexString, text);
 end
+
+function CreateTextureMarkup(file, fileWidth, fileHeight, width, height, left, right, top, bottom, xOffset, yOffset)
+	return ("|T%s:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d|t"):format(
+			file
+	, height
+	, width
+	, xOffset or 0
+	, yOffset or 0
+	, fileWidth
+	, fileHeight
+	, left * fileWidth
+	, right * fileWidth
+	, top * fileHeight
+	, bottom * fileHeight
+	);
+end
