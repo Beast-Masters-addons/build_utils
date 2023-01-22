@@ -65,3 +65,23 @@ function UnitSex(unit)
         return 3
     end
 end
+
+function UnitName(unit)
+    if unit == "player" then
+        return "Quadduo"
+    end
+end
+
+function GetRealmName()
+    return "MirageRaceway"
+end
+
+function GetSpellInfo(spellId)
+    if spellId == 186257 then
+        return "Aspect of the Cheetah", 132242, 0, 0, 0, 186257
+    end
+end
+
+function CastSpellByName(spellName)
+    return spellName
+end
