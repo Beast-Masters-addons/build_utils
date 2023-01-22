@@ -87,3 +87,21 @@ end
 function CastSpellByName(spellName)
     return spellName
 end
+
+function GetMoney()
+    return 62993
+end
+
+function GetCursorMoney()
+    return 0
+end
+
+function GetPlayerTradeMoney()
+    return 0
+end
+
+function GetGuildInfo(unit)
+    if unit == "player" then
+        return "The Wasnots", "member", 4
+    end
+end
