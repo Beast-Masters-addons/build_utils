@@ -35,6 +35,7 @@ with open(input_toc) as fp:
             continue
 
         file_path = get_path(line.strip(), folder)
+        print(file_path)
         file_name, file_extension = os.path.splitext(file_path)
 
         if file_extension == '.lua':
