@@ -89,6 +89,67 @@ function C_TradeSkillUI.GetProfessionInfoBySkillLineID(index)
     }
 end
 
+function _G.C_TradeSkillUI.GetRecipeSchematic(recipeSpellID, isRecraft, recipeLevel)
+
+    return {
+        ["outputItemID"] = 44838,
+        ["hasCraftingOperationInfo"] = false,
+        ["quantityMax"] = 1,
+        ["quantityMin"] = 1,
+        ["recipeID"] = 62045,
+        ["recipeType"] = 1,
+        ["name"] = "Slow-Roasted Turkey",
+        ["reagentSlotSchematics"] = {
+            {
+                ["quantityRequired"] = 1,
+                ["dataSlotIndex"] = 1,
+                ["slotIndex"] = 1,
+                ["dataSlotType"] = 1,
+                ["reagentType"] = 1,
+                ["orderSource"] = 0,
+                ["reagents"] = {
+                    {
+                        ["itemID"] = 44834,
+                    },
+                },
+            },
+            {
+                ["quantityRequired"] = 2,
+                ["dataSlotIndex"] = 2,
+                ["slotIndex"] = 2,
+                ["dataSlotType"] = 1,
+                ["reagentType"] = 1,
+                ["orderSource"] = 0,
+                ["reagents"] = {
+                    {
+                        ["itemID"] = 44853,
+                    },
+                },
+            },
+            {
+                ["quantityRequired"] = 1,
+                ["dataSlotIndex"] = 3,
+                ["slotIndex"] = 3,
+                ["dataSlotType"] = 1,
+                ["reagentType"] = 1,
+                ["orderSource"] = 0,
+                ["reagents"] = {
+                    {
+                        ["itemID"] = 44835,
+                    },
+                },
+            },
+        },
+        ["isRecraft"] = false,
+        ["icon"] = 0,
+    }
+end
+
+function _G.C_TradeSkillUI.GetRecipeFixedReagentItemLink()
+    --Link copied from Wowhead, in game link is a bit different
+    return "|cffffffff|Hitem:44834::::::::70:::::|h[Wild Turkey]|h|r";
+end
+
 ---Returns spell tab indices of the player's current professions
 function _G.GetProfessions()
     return 6, 9, 10, 8, 7
