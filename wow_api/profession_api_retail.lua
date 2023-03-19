@@ -22,7 +22,7 @@ end
 
 function _G.C_TradeSkillUI.GetProfessionInfoBySkillLineID()
     return {
-        ['skillLevel'] = 0,
+        ['skillLevel'] = 10,
         ['professionID'] = 2485,
         ['skillModifier'] = 0,
         ['parentProfessionName'] = "Alchemy",
@@ -30,7 +30,7 @@ function _G.C_TradeSkillUI.GetProfessionInfoBySkillLineID()
         ['profession'] = 3,
         ['isPrimaryProfession'] = true,
         ['professionName'] = "Classic Alchemy",
-        ['maxSkillLevel'] = 0,
+        ['maxSkillLevel'] = 125,
         ['expansionName'] = "Classic"
     }
 end
