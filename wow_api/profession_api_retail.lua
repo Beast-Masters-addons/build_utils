@@ -146,8 +146,7 @@ function _G.C_TradeSkillUI.GetRecipeSchematic(recipeSpellID, isRecraft, recipeLe
 end
 
 function _G.C_TradeSkillUI.GetRecipeFixedReagentItemLink()
-    --Link copied from Wowhead, in game link is a bit different
-    return "|cffffffff|Hitem:44834::::::::70:::::|h[Wild Turkey]|h|r";
+    return "\124cffffffff\124Hitem:2453::::::::60:::::\124h[Bruiseweed]\124h\124r";
 end
 
 ---Returns spell tab indices of the player's current professions
