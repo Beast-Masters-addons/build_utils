@@ -44,3 +44,5 @@ with open(input_toc) as fp:
 
 with open(output_file, 'w') as fp:
     fp.write('\n'.join(files))
+
+print('toc saved as %s' % output_file)
