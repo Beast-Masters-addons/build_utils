@@ -7,7 +7,7 @@ from . import WoWBuildUtils
 class WoWTables(WoWBuildUtils):
     wow_tools_host = os.getenv('WOW_TOOLS', None) or 'http://127.0.0.1:5000'
 
-    def __init__(self, data_folder=None, build_number='3.4.1.48503', locale=None, game='wrath'):
+    def __init__(self, data_folder=None, build_number=None, locale=None, game='wrath'):
         super().__init__(data_folder=data_folder)
         self.game = game
         if not build_number:
