@@ -10,7 +10,10 @@ class WoWTables(WoWBuildUtils):
     def __init__(self, data_folder=None, build_number='3.4.1.48503', locale=None, game='wrath'):
         super().__init__(data_folder=data_folder)
         self.game = game
-        self.build_number = build_number
+        if not build_number:
+            self.build_number = self.get_build(game)
+        else:
+            self.build_number = build_number
         self.locale = locale
         self.select_build(self.translate_build(game))
 
