@@ -1,6 +1,7 @@
 import os
 import sys
 import xml.etree.ElementTree as ET
+from pprint import pprint
 
 input_toc = os.path.realpath(sys.argv[1])
 folder = os.path.dirname(input_toc)
@@ -37,6 +38,8 @@ with open(input_toc) as fp:
         file_path = get_path(line.strip(), folder)
         print(file_path)
         file_name, file_extension = os.path.splitext(file_path)
+        if not os.path.exists(file_path):
+            print('File not found: %s' % file_path)
 
         if file_extension == '.lua':
             files.append(file_path)
@@ -46,4 +49,5 @@ with open(input_toc) as fp:
 with open(output_file, 'w') as fp:
     fp.write('\n'.join(files))
 
+pprint(files)
 print('toc saved as %s' % output_file)
