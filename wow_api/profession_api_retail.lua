@@ -16,6 +16,25 @@ function _G.C_TradeSkillUI.GetTradeSkillLine()
     return 171, skillLineName, skillLineRank, skillLineMaxRank
 end
 
+function _G.C_TradeSkillUI.GetProfessionChildSkillLineID()
+    return 2485
+end
+
+function _G.C_TradeSkillUI.GetProfessionInfoBySkillLineID()
+    return {
+        ['skillLevel'] = 0,
+        ['professionID'] = 2485,
+        ['skillModifier'] = 0,
+        ['parentProfessionName'] = "Alchemy",
+        ['parentProfessionID'] = 171,
+        ['profession'] = 3,
+        ['isPrimaryProfession'] = true,
+        ['professionName'] = "Classic Alchemy",
+        ['maxSkillLevel'] = 0,
+        ['expansionName'] = "Classic"
+    }
+end
+
 function _G.C_TradeSkillUI.GetRecipeNumReagents(recipeID)
     if recipeID == 3447 then
         return 3
@@ -75,18 +94,6 @@ end
 
 function C_TradeSkillUI.GetCategoryInfo(categoryID)
     return nil
-end
-
-function C_TradeSkillUI.GetProfessionInfoBySkillLineID(index)
-    return {
-        ['skillLevel'] = 0,
-        ['professionID'] = 0,
-        ['skillModifier'] = 0,
-        ['isPrimaryProfession'] = false,
-        ['professionName'] = "",
-        ['maxSkillLevel'] = 0,
-        ['expansionName'] = ""
-    }
 end
 
 function _G.C_TradeSkillUI.GetRecipeSchematic(recipeSpellID, isRecraft, recipeLevel)
