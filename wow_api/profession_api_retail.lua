@@ -152,8 +152,13 @@ function _G.C_TradeSkillUI.GetRecipeSchematic(recipeSpellID, isRecraft, recipeLe
     }
 end
 
-function _G.C_TradeSkillUI.GetRecipeFixedReagentItemLink()
-    return "\124cffffffff\124Hitem:2453::::::::60:::::\124h[Bruiseweed]\124h\124r";
+function _G.C_TradeSkillUI.GetRecipeFixedReagentItemLink(recipeID, reagentIndex)
+    local links = {
+        "\124cffffffff\124Hitem:2453::::::::60:::::\124h[Bruiseweed]\124h\124r",
+        "\124cffffffff\124Hitem:2450::::::::70:::::\124h[Briarthorn]\124h\124r",
+        "\124cffffffff\124Hitem:3371::::::::70:::::\124h[Crystal Vial]\124h\124r",
+    }
+    return links[reagentIndex]
 end
 
 ---Returns spell tab indices of the player's current professions
