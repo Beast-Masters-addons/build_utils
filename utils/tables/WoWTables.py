@@ -45,8 +45,13 @@ class WoWTables(WoWBuildUtils):
         response = self.get(url)
         response.raise_for_status()
 
+    def get_table_build(self, table):
+        response = self.get('%s/listfile/db2/%s/versions' % (self.wow_tools_host, table))
+        return response.json()[0]
+
     def get_db_table(self, table):
-        url = '%s/dbc/export/?name=%s&build=%s' % (self.wow_tools_host, table, self.build_number)
+        build = self.get_table_build(table)
+        url = '%s/dbc/export/?name=%s&build=%s' % (self.wow_tools_host, table, build)
         if self.locale:
             url += '&locale=%s' % self.locale
         response = self.get(url)
