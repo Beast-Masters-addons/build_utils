@@ -1,12 +1,12 @@
 import os
 
 try:
-    from utils.tables import WoWTablesCustom
+    from utils.tables import WoWTables
 except ImportError:
-    from .tables import WoWTablesCustom
+    from tables import WoWTables
 
 
-class BuildMapData(WoWTablesCustom):
+class BuildMapData(WoWTables):
     def map_to_area(self):
         table = self.get_db_table('uimapassignment')
         maps = {}
