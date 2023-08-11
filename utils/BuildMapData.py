@@ -3,7 +3,7 @@ import os
 try:
     from utils.tables import WoWTables
 except ImportError:
-    from tables.WoWTables import WoWTables
+    from .tables.WoWTables import WoWTables
 
 
 class BuildMapData(WoWTables):
