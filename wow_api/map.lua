@@ -73,16 +73,6 @@ function C_Map.GetPlayerMapPosition(uiMapID, unitToken)
     return CreateVector2D(0.54766619205475, 0.54863452911377)
 end
 
-function _G.GetLocale()
-    return _G['locale'] or 'enUS'
-end
-
-function _G.UnitLevel(unit)
-    if unit == 'player' then
-        return _G['playerLevel'] or 34
-    end
-end
-
 function GetRealZoneText(uiMapID)
     local map = _G.C_Map.GetMapInfo(uiMapID)
     if map then

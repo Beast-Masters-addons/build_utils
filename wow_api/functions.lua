@@ -45,6 +45,11 @@ function DevTools_Dump(value)
     require 'pl.pretty'.dump(value)
 end
 
+C_UIColor = {}
+function C_UIColor.GetColors()
+    return {} --TODO: Get table https://wow.tools/dbc/?dbc=globalcolor&build=10.0.2.46702#page=1
+end
+
 function GetAddOnInfo(addon)
     return addon, addon
 end
@@ -103,5 +108,15 @@ end
 function GetGuildInfo(unit)
     if unit == "player" then
         return "The Wasnots", "member", 4
+    end
+end
+
+function GetLocale()
+    return _G['locale'] or 'enUS'
+end
+
+function UnitLevel(unit)
+    if unit == 'player' then
+        return _G['playerLevel'] or 34
     end
 end
