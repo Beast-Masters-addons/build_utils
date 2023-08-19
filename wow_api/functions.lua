@@ -115,6 +115,10 @@ function GetLocale()
     return _G['locale'] or 'enUS'
 end
 
+function GetCurrentRegion()
+    return 3
+end
+
 function UnitLevel(unit)
     if unit == 'player' then
         return _G['playerLevel'] or 34
