@@ -33,6 +33,10 @@ function frame:GetScript()
     return self.script
 end
 
+function frame:HookScript()
+
+end
+
 ---Hide the frame
 function frame:Hide()
 
