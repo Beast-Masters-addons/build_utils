@@ -1,5 +1,7 @@
 ---@class Frame
 local frame = {}
+_G['frames'] = {}
+_G['anon_frame_count'] = 1
 
 ---Create a Frame object
 ---https://wowpedia.fandom.com/wiki/API_CreateFrame
@@ -10,7 +12,17 @@ local frame = {}
 ---@param id string ID to assign to the frame. Can also be set with Frame:SetID()
 ---@return Frame Frame object
 function CreateFrame(frameType, name, parent, template, id)
+    if name == nil then
+        name = ('anonymous_%d'):format(_G['anon_frame_count'])
+        _G['anon_frame_count'] = _G['anon_frame_count'] + 1
+    end
+
+    _G['frames'][name] = frame
     return frame
+end
+
+function GetFrame(name)
+    return _G['frames'][name]
 end
 
 function frame:SetScript(callable)
