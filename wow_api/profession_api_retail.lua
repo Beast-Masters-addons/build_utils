@@ -20,19 +20,37 @@ function _G.C_TradeSkillUI.GetProfessionChildSkillLineID()
     return 2485
 end
 
-function _G.C_TradeSkillUI.GetProfessionInfoBySkillLineID()
-    return {
-        ['skillLevel'] = 10,
-        ['professionID'] = 2485,
-        ['skillModifier'] = 0,
-        ['parentProfessionName'] = "Alchemy",
-        ['parentProfessionID'] = 171,
-        ['profession'] = 3,
-        ['isPrimaryProfession'] = true,
-        ['professionName'] = "Classic Alchemy",
-        ['maxSkillLevel'] = 125,
-        ['expansionName'] = "Classic"
-    }
+function _G.C_TradeSkillUI.GetProfessionInfoBySkillLineID(skillLineID)
+    if skillLineID == 2592 then
+        return {
+            ['skillLevel'] = 0,
+            ['professionID'] = 2592,
+            ['sourceCounter'] = 0,
+            ['parentProfessionName'] = "Fishing",
+            ['parentProfessionID'] = 356,
+            ['isPrimaryProfession'] = false,
+            ['profession'] = 10,
+            ['skillModifier'] = 0,
+            ['professionName'] = "Classic Fishing",
+            ['maxSkillLevel'] = 0,
+            ['expansionName'] = "Classic"
+        }
+    elseif skillLineID == 2485 then
+        return {
+            ['skillLevel'] = 10,
+            ['professionID'] = 2485,
+            ['skillModifier'] = 0,
+            ['parentProfessionName'] = "Alchemy",
+            ['parentProfessionID'] = 171,
+            ['profession'] = 3,
+            ['isPrimaryProfession'] = true,
+            ['professionName'] = "Classic Alchemy",
+            ['maxSkillLevel'] = 125,
+            ['expansionName'] = "Classic"
+        }
+    else
+        error(('Unknown skillLineID %d'):format(skillLineID))
+    end
 end
 
 function _G.C_TradeSkillUI.GetRecipeNumReagents(recipeID)
