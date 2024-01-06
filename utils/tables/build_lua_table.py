@@ -32,7 +32,10 @@ def build_lua_table(source: dict, name='data', indent_size=4, indent_level=1) ->
         if type(key) == int:
             key = '[%d]' % key
         elif type(key) == str:
-            key = '["%s"]' % key
+            try:
+                key = '[%d]' % int(key)
+            except ValueError:
+                key = '["%s"]' % key
         else:
             raise ValueError('Unsupported key type: %s' % type(key))
 
