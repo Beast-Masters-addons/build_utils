@@ -1,5 +1,3 @@
-import os
-
 try:
     from utils.tables import WoWTables
 except ImportError:
@@ -51,9 +49,8 @@ class BuildMapData(WoWTables):
 
 
 if __name__ == "__main__":
-    version = os.getenv('GAME_VERSION')
-    build = BuildMapData(game=version)
-    build.data_folder = os.path.join(build.data_folder, version)
+    build = BuildMapData()
+    print('Game version', build.game_version)
 
     build.save(build.map_to_area(), 'MapToZone')
     build.save(build.map_info(), 'MapInfo')
