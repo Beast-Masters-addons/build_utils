@@ -8,11 +8,18 @@ from .build_lua_table import build_lua_list, build_lua_table
 
 
 class WoWBuildUtils:
-    def __init__(self, data_folder=None):
+    def __init__(self, data_folder=None, game_version=None):
         if data_folder:
             self.data_folder = data_folder
         else:
-            self.data_folder = os.path.join(os.path.dirname(__file__), '..', 'data')
+            if not game_version:
+                game_version = os.getenv('GAME_VERSION')
+
+            if game_version not in ['classic', 'wrath', 'retail']:
+                raise ValueError('Invalid game version "%s"' % format(game_version))
+
+            self.game_version = game_version
+            self.data_folder = os.path.join(os.path.dirname(__file__), '..', 'data', game_version)
         self.user_agent = 'datagutten/WoWBuildUtils'
 
     def get(self, url, headers=None):
@@ -28,7 +35,7 @@ class WoWBuildUtils:
 
     def save(self, data, name, save_lua=True, save_json=True):
         if not os.path.exists(self.data_folder):
-            os.mkdir(self.data_folder)
+            os.makedirs(self.data_folder, exist_ok=True)
 
         if save_lua:
             with open(self.file_name(name, 'lua'), 'w', encoding="utf-8") as fp:
