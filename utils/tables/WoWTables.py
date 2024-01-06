@@ -1,5 +1,6 @@
 import csv
 import os
+import re
 
 from . import WoWBuildUtils
 
@@ -16,15 +17,13 @@ class WoWTables(WoWBuildUtils):
         self.locale = locale
         self.select_build(self.translate_build(self.game_version))
 
-    @staticmethod
-    def get_build(game_version=None):
-        version = game_version or os.getenv('GAME_VERSION')
-        if version == 'classic':
-            return '1.14.3.46575'
-        elif version == 'wrath':
-            return '3.4.1.48503'
-        else:
-            return '10.0.5.48526'
+    def get_build(self):
+        builds = self.get_builds()
+        major = {'classic': 1, 'wrath': 3, 'retail': 10}[self.game_version]
+        for build in builds:
+            if int(re.sub(r'(\d+)\..+', r'\1', build)) == major:
+                return build
+        raise RuntimeError('No build with major version %d found' % format(major))
 
     @staticmethod
     def translate_build(product):
@@ -44,13 +43,12 @@ class WoWTables(WoWBuildUtils):
         response = self.get(url)
         response.raise_for_status()
 
-    def get_table_build(self, table):
+    def get_table_builds(self, table):
         response = self.get('%s/listfile/db2/%s/versions' % (self.wow_tools_host, table))
-        return response.json()[0]
+        return response.json()
 
     def get_db_table(self, table):
-        build = self.get_table_build(table)
-        url = '%s/dbc/export/?name=%s&build=%s' % (self.wow_tools_host, table, build)
+        url = '%s/dbc/export/?name=%s&build=%s' % (self.wow_tools_host, table, self.build_number)
         if self.locale:
             url += '&locale=%s' % self.locale
         response = self.get(url)
