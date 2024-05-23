@@ -24,7 +24,7 @@ elseif os.getenv('GAME_VERSION') == 'bcc' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 elseif os.getenv('GAME_VERSION') == 'wrath' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_WRATH_CLASSIC
-elseif os.getenv('GAME_VERSION') == 'cata':
+elseif os.getenv('GAME_VERSION') == 'cata' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_CATACLYSM_CLASSIC
 elseif os.getenv('GAME_VERSION') == 'retail' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_MAINLINE
