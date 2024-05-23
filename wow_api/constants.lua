@@ -11,11 +11,12 @@ EXPANSION_NAME9 = "Dragonflight"
 
 ZONE = "Zone"
 
---https://wowpedia.fandom.com/wiki/WOW_PROJECT_ID
+--https://warcraft.wiki.gg/wiki/WOW_PROJECT_ID
 _G.WOW_PROJECT_MAINLINE = 1
 _G.WOW_PROJECT_CLASSIC = 2
 _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC = 5
 _G.WOW_PROJECT_WRATH_CLASSIC = 11
+_G.WOW_PROJECT_CATACLYSM_CLASSIC = 14
 
 if os.getenv('GAME_VERSION') == 'classic' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_CLASSIC
@@ -23,6 +24,8 @@ elseif os.getenv('GAME_VERSION') == 'bcc' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 elseif os.getenv('GAME_VERSION') == 'wrath' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_WRATH_CLASSIC
+elseif os.getenv('GAME_VERSION') == 'cata':
+    _G.WOW_PROJECT_ID = _G.WOW_PROJECT_CATACLYSM_CLASSIC
 elseif os.getenv('GAME_VERSION') == 'retail' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_MAINLINE
 else
