@@ -24,7 +24,7 @@ class WoWTables(WoWBuildUtils):
         elif product == 'cata':
             return 'wow_classic', 4
         elif product == 'retail':
-            return 'wow', 10
+            return 'wow', 11
         else:
             raise AttributeError('Unknown product name')
 
