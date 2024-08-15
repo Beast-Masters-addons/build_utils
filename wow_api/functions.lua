@@ -124,3 +124,7 @@ function UnitLevel(unit)
         return _G['playerLevel'] or 34
     end
 end
+
+function GetMaxLevelForLatestExpansion()
+    return 70
+end
