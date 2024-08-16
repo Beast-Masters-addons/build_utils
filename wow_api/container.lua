@@ -1,4 +1,4 @@
-local path = debug.getinfo(1).short_src:gsub('container.lua', '')
+local path = debug.getinfo(1).source:gsub('container.lua', ''):sub(2)
 
 if os.getenv('GAME_VERSION') == 'classic' or os.getenv('GAME_VERSION') == 'wrath' then
     loadfile(path .. 'container_classic.lua')()
