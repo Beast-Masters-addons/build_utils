@@ -7,8 +7,11 @@ function GetBuildInfo()
         return "2.5.1", 38364, "Apr 15 2021", 20501
     elseif os.getenv('GAME_VERSION') == 'wrath' then
         return "3.4.0", 45327, "Aug 25 2022", 30400
+    elseif os.getenv('GAME_VERSION') == 'cata' then
+        return "4.4.1", 57294, "Oct 25 2024", 40401
     else
-        return "9.0.1", "36492", "Oct 30 2020", 90001
+        --return "9.0.1", "36492", "Oct 30 2020", 90001
+        return "11.0.5", "57292", "Oct 25 2024", 110005
     end
 end
 
