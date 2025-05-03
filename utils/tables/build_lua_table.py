@@ -56,7 +56,14 @@ def build_lua_table(source: dict, name='data', indent_size=4, indent_level=1) ->
                 table += '}'
             else:
                 for item in value:
-                    table += ' %s,' % handle_value(item)
+                    if type(item) == dict:
+                        table += build_lua_table(item, name=None, indent_size=indent_size,
+                                                 indent_level=indent_level + 1) + ','
+                    elif type(item) == list:
+                        table += build_lua_list(item, name=None, indent_size=indent_size,
+                                                indent_level=indent_level + 1) + ','
+                    else:
+                        table += ' %s,' % handle_value(item)
 
                 table = table[:-1]
                 table += ' }'
