@@ -43,8 +43,14 @@ class Wowhead(WoWBuildUtils):
 
     @staticmethod
     def get_js_variable(js, variable):
-        matches = re.search(r'(?:var|let|const)\s?%s=(.+?);' % variable, js)
+        matches = re.search(r'(?:var|let|const)\s?%s\s?=\s?(.+?);' % variable, js)
         return matches.group(1)
+
+    @staticmethod
+    def parse_js_array_variable(js, variable):
+        js_array = Wowhead.get_js_variable(js, variable)
+        js = 'var data = ' + js_array
+        return Wowhead.js_array_to_json(js, 'data')
 
     @staticmethod
     def js_array_to_json(array, name=None):
