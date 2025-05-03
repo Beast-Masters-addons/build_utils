@@ -1,4 +1,5 @@
 import csv
+import json
 import os
 import re
 
@@ -66,3 +67,18 @@ class WoWTables(WoWBuildUtils):
             return csv.DictReader(response.text.splitlines())
         else:
             raise RuntimeError('Status code %d, URL %s' % (response.status_code, url))
+
+    def get_db_table_cache(self, table_name):
+        build_num = self.get_table_build(table_name)
+        file = '%s_%s.json' % (table_name, build_num)
+        file = os.path.join(self.data_folder, file)
+        if os.path.exists(file):
+            try:
+                with open(file, 'r') as fp:
+                    return json.load(fp)
+            except json.JSONDecodeError:
+                pass
+        table_data = list(self.get_db_table(table_name))
+        with open(file, 'w') as fp:
+            json.dump(table_data, fp)
+        return table_data
