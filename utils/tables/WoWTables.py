@@ -40,6 +40,8 @@ class WoWTables(WoWBuildUtils):
     def get_table_build(self, table):
         response = self.get('%s/listfile/db2/%s/versions' % (self.wow_tools_host, table))
         for build in response.json():
+            if type(build) is dict:
+                build = build['item1']
             major = re.sub(r'(\d+)\..+', r'\1', build)
             if int(major) == self.major:
                 return build
