@@ -8,19 +8,37 @@ from .build_lua_table import build_lua_list, build_lua_table
 
 
 class WoWBuildUtils:
-    def __init__(self, data_folder=None, game_version=None):
-        if data_folder:
-            self.data_folder = data_folder
-        else:
-            if not game_version:
-                game_version = os.getenv('GAME_VERSION')
+    game_version: str = None
+    """
+    Game version name (wrath, cata, etc.)
+    """
+    data_folder: str = None
+    """
+    Folder to save data with subfolder for game version
+    """
+    data_folder_override: str = None
+    """
+    Manually set folder to save daa
+    """
 
-            if game_version not in ['classic', 'cata', 'retail']:
+    def __init__(self, data_folder=None, game_version=None):
+        self.data_folder_override = data_folder
+        self.select_game_version(game_version)
+
+        self.user_agent = 'datagutten/WoWBuildUtils'
+
+    def select_game_version(self, game_version: str):
+        game_version_env = os.getenv('GAME_VERSION')
+        if not game_version and game_version_env:
+            game_version = game_version_env
+
+        if game_version:
+            if game_version not in ['classic', 'wrath', 'cata', 'retail']:
                 raise ValueError('Invalid game version "%s"' % format(game_version))
 
             self.game_version = game_version
-            self.data_folder = os.path.join(os.path.dirname(__file__), '..', 'data', game_version)
-        self.user_agent = 'datagutten/WoWBuildUtils'
+            if not self.data_folder_override:
+                self.data_folder = os.path.join(os.path.dirname(__file__), '..', 'data', game_version)
 
     def get(self, url, headers=None):
         if headers is None:

@@ -34,6 +34,12 @@ class WoWTables(WoWBuildUtils):
         url = '%s/casc/listManifests' % self.wow_tools_host
         return self.get(url).json()
 
+    def select_game_version(self, game):
+        super().select_game_version(game)
+        if game:
+            game, self.major = self.translate_build(game)
+            self.select_build(game)
+
     def select_build(self, product):
         url = '%s/casc/switchProduct?product=%s' % (self.wow_tools_host, product)
         response = self.get(url)
