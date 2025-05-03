@@ -26,6 +26,9 @@ class Wowhead(WoWBuildUtils):
             url = 'https://%s.wowhead.com' % domain
             if element and key:
                 url += '/%s=%d' % (element, key)
+            elif element:
+                url += '/%s' % element
+
             if uri:
                 url += uri
         return super(Wowhead, self).get(url)
