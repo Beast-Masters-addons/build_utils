@@ -26,6 +26,8 @@ class WoWTables(WoWBuildUtils):
             return 'wow_classic', 3
         elif product == 'cata':
             return 'wow_classic', 4
+        elif product == 'mists':
+            return 'wow_classic', 5
         elif product == 'retail':
             return 'wow', 11
         else:

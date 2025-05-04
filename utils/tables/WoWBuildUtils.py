@@ -32,7 +32,7 @@ class WoWBuildUtils:
             game_version = game_version_env
 
         if game_version:
-            if game_version not in ['classic', 'wrath', 'cata', 'retail']:
+            if game_version not in ['classic', 'wrath', 'cata', 'mists', 'retail']:
                 raise ValueError('Invalid game version "%s"' % format(game_version))
 
             self.game_version = game_version
