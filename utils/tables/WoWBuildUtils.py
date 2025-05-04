@@ -38,7 +38,11 @@ class WoWBuildUtils:
 
             self.game_version = game_version
             if not self.data_folder_override:
-                self.data_folder = os.path.join(os.path.dirname(__file__), '..', 'data', game_version)
+                data_folder = os.path.join(os.path.dirname(__file__), '..', 'data', game_version)
+                os.makedirs(data_folder, exist_ok=True)
+                self.data_folder = os.path.realpath(data_folder)
+            else:
+                self.data_folder = os.path.realpath(self.data_folder_override)
 
     def get(self, url, headers=None):
         if headers is None:
