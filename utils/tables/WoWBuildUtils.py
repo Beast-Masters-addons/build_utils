@@ -23,9 +23,8 @@ class WoWBuildUtils:
 
     def __init__(self, data_folder=None, game_version=None):
         self.data_folder_override = data_folder
-        self.select_game_version(game_version)
-
         self.user_agent = 'datagutten/WoWBuildUtils'
+        self.select_game_version(game_version)
 
     def select_game_version(self, game_version: str):
         game_version_env = os.getenv('GAME_VERSION')
