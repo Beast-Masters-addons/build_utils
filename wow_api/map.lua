@@ -1,7 +1,7 @@
 --loadfile('MapInfo.lua')()
 --loadfile('AreaInfo.lua')()
 
-local is_classic = os.getenv('GAME_VERSION') ~= 'retail'
+local wow_major = math.floor(tonumber(select(4, _G.GetBuildInfo()) / 10000))
 
 _G.C_Map = {}
 function _G.C_Map.GetAreaInfo(areaID)
@@ -14,7 +14,8 @@ end
 
 function _G.C_Map.GetBestMapForUnit(unit)
     if unit == 'player' then
-        if is_classic then
+        -- Stranglethorn Vale was split in Catalysm (v4)
+        if wow_major <= 3 then
             return 1434 --Stranglethorn Vale
         else
             return 210 --The Cape of Stranglethorn
