@@ -1,5 +1,5 @@
-loadfile('mixin.lua')()
-loadfile('Color.lua')()
+--[[loadfile('mixin.lua')()
+loadfile('Color.lua')()]]
 
 _G['ITEM_QUALITY0_DESC'] = 'Poor'
 _G['ITEM_QUALITY1_DESC'] = 'Common'
