@@ -6,6 +6,16 @@ local path = debug.getinfo(1, "S").short_src:match("(.*[/\\])") or "./"
 loadfile(path .. 'test_data/PetInfo.lua')()
 loadfile(path .. 'test_data/PetStats.lua')()
 
+LE_PET_JOURNAL_FILTER_COLLECTED = 1
+LE_PET_JOURNAL_FILTER_NOT_COLLECTED = 2
+
+BATTLE_PET_BREED_QUALITY1 = "Poor"
+BATTLE_PET_BREED_QUALITY2 = "Common"
+BATTLE_PET_BREED_QUALITY3 = "Uncommon"
+BATTLE_PET_BREED_QUALITY4 = "Rare"
+BATTLE_PET_BREED_QUALITY5 = "Epic"
+BATTLE_PET_BREED_QUALITY6 = "Legendary"
+
 function C_PetJournal.GetNumPets()
     return 561, 43
 end
