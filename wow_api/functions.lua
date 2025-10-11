@@ -1,4 +1,7 @@
 _G['SlashCmdList'] = {}
+_G.debugstack = debug.traceback
+_G.strmatch = string.match
+_G.unpack = table.unpack
 
 function GetBuildInfo()
     if os.getenv('GAME_VERSION') == 'classic' then
