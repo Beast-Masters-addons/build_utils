@@ -1,7 +1,9 @@
 import csv
 import json
 import os
+import pickle
 import re
+import warnings
 
 from . import WoWBuildUtils
 
@@ -64,6 +66,7 @@ class WoWTables(WoWBuildUtils):
             raise RuntimeError('Status code %d, URL %s' % (response.status_code, url))
 
     def get_db_table_cache(self, table_name):
+        warnings.deprecated("Use WoWTablesCache class")
         build_num = self.get_table_build(table_name)
         file = '%s_%s.json' % (table_name, build_num)
         file = os.path.join(self.data_folder, file)
@@ -77,3 +80,24 @@ class WoWTables(WoWBuildUtils):
         with open(file, 'w') as fp:
             json.dump(table_data, fp)
         return table_data
+
+
+class WowTablesCache(WoWTables):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._cache_path = os.getenv('TABLE_CACHE_PATH', '')
+
+    def get_db_table(self, table):
+        build = self.get_table_build(table)
+        cache_folder = os.path.join(self._cache_path, build)
+
+        cache_file = os.path.join(cache_folder, '%s.pickle' % table)
+        if os.path.exists(cache_file):
+            with open(cache_file, 'rb') as fp:
+                return pickle.load(fp)
+        else:
+            data = list(super().get_db_table(table))
+            os.makedirs(cache_folder, exist_ok=True)
+            with open(cache_file, 'wb') as fp:
+                pickle.dump(data, fp)
+            return data
