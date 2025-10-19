@@ -16,7 +16,6 @@ class WoWTables(WoWBuildUtils):
         self.build_number = build_number
         self.locale = locale
         game, self.major = self.translate_build(game)
-        self.select_build(game)
 
     @staticmethod
     def translate_build(product):
@@ -41,12 +40,6 @@ class WoWTables(WoWBuildUtils):
         super().select_game_version(game)
         if game:
             game, self.major = self.translate_build(game)
-            self.select_build(game)
-
-    def select_build(self, product):
-        url = '%s/casc/switchProduct?product=%s' % (self.wow_tools_host, product)
-        response = self.get(url)
-        response.raise_for_status()
 
     def get_table_build(self, table):
         response = self.get('%s/listfile/db2/%s/versions' % (self.wow_tools_host, table))
