@@ -42,7 +42,7 @@ class WoWTables(WoWBuildUtils):
             game, self.major = self.translate_build(game)
 
     def get_table_build(self, table):
-        response = self.get('%s/listfile/db2/%s/versions' % (self.wow_tools_host, table))
+        response = self.get('%s/listfile/db2/%s/versions' % (self.wow_tools_host, table.lower()))
         for build in response.json():
             if type(build) is dict:
                 build = build['item1']
