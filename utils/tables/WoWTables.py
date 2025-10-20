@@ -16,7 +16,7 @@ class WoWTables(WoWBuildUtils):
         super().__init__(data_folder, game)
         self.build_number = build_number
         self.locale = locale
-        game, self.major = self.translate_build(self.game_version)
+        self.branch, self.major = self.translate_build(self.game_version)
 
     @staticmethod
     def translate_build(product):
@@ -32,6 +32,11 @@ class WoWTables(WoWBuildUtils):
             return 'wow', 11
         else:
             raise AttributeError('Unknown product name')
+
+    def select_build(self, branch=None):
+        url = '%s/casc/switchProduct?product=%s' % (self.wow_tools_host, branch or self.branch)
+        response = self.get(url)
+        response.raise_for_status()
 
     def get_builds(self):
         url = '%s/casc/listManifests' % self.wow_tools_host
