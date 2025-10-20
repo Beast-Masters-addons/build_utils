@@ -12,12 +12,11 @@ class WoWTables(WoWBuildUtils):
     major: int
     wow_tools_host = os.getenv('WOW_TOOLS', None) or 'http://127.0.0.1:5000'
 
-    def __init__(self, data_folder=None, build_number=None, locale=None, game='wrath'):
+    def __init__(self, data_folder=None, build_number=None, locale=None, game=None):
         super().__init__(data_folder, game)
-        self.game = game
         self.build_number = build_number
         self.locale = locale
-        game, self.major = self.translate_build(game)
+        game, self.major = self.translate_build(self.game_version)
 
     @staticmethod
     def translate_build(product):
