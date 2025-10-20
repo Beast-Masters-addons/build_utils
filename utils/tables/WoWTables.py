@@ -85,6 +85,8 @@ class WowTablesCache(WoWTables):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._cache_path = os.getenv('TABLE_CACHE_PATH', '')
+        if self.locale != 'enUS':
+            self._cache_path = os.path.join(self._cache_path, self.locale)
 
     def get_db_table(self, table):
         build = self.get_table_build(table)
