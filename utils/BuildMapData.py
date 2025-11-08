@@ -1,10 +1,10 @@
 try:
-    from utils.tables import WoWTables
+    from tables import WowTablesCache
 except ImportError:
-    from .tables.WoWTables import WoWTables
+    from .tables.WoWTables import WowTablesCache
 
 
-class BuildMapData(WoWTables):
+class BuildMapData(WowTablesCache):
     def map_to_area(self):
         table = self.get_db_table('uimapassignment')
         maps = {}
