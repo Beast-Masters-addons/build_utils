@@ -15,7 +15,7 @@ class WoWTables(WoWBuildUtils):
     def __init__(self, data_folder=None, build_number=None, locale=None, game=None):
         super().__init__(data_folder, game)
         self.build_number = build_number
-        self.locale = locale
+        self.locale = locale or 'enUS'
         self.branch, self.major = self.translate_build(self.game_version)
 
     @staticmethod
