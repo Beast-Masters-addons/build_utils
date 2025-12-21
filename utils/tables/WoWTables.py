@@ -22,6 +22,8 @@ class WoWTables(WoWBuildUtils):
     def translate_build(product):
         if product == 'classic':
             return 'wow_classic_era', 1
+        elif product == 'bcc':
+            return 'wowv5', 2
         elif product == 'wrath':
             return 'wow_classic', 3
         elif product == 'cata':
