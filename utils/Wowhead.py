@@ -87,6 +87,15 @@ class Wowhead(WoWBuildUtils):
             raise e
 
     @staticmethod
+    def get_json_listview(response: requests.Response, list_id: str):
+        match = re.search(r'id="data\.page\.listPage\.listviews">(.+)<', response.text)
+        data = json.loads(match.group(1))
+        for listview in data:
+            if listview['id'] == list_id:
+                return listview['data']
+        raise ValueError('No list with id %s' % list_id)
+
+    @staticmethod
     def get_list_data(response: requests.Response, name):
         matches = re.search(r'var %s\s?=\s?(\[.+])' % name, response.text)
         return Wowhead.js_array_to_json(matches.group(0), name)
