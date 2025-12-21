@@ -23,7 +23,7 @@ class WoWTables(WoWBuildUtils):
         if product == 'classic':
             return 'wow_classic_era', 1
         elif product == 'bcc':
-            return 'wowv5', 2
+            return 'wow_classic_era_ptr', 2
         elif product == 'wrath':
             return 'wow_classic', 3
         elif product == 'cata':
