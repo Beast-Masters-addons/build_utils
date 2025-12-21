@@ -176,3 +176,7 @@ end
 function frame:SetFixedFrameStrata(...)
 
 end
+
+function frame:SetAttribute(attributeName, value)
+    return value
+end
