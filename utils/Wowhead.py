@@ -70,9 +70,11 @@ class Wowhead(WoWBuildUtils):
         js = array
         js += ';\nconsole.log(JSON.stringify(%s))' % name
         p = subprocess.Popen(['node'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
-        json_string = p.communicate(input=js.encode())[0]
-
-        return json.loads(json_string)
+        response = p.communicate(input=js.encode())
+        if p.returncode == 0:
+            return json.loads(response[0])
+        else:
+            raise RuntimeError(response[1].decode())
 
     @staticmethod
     def get_list_view(response: requests.Response, list_id):
