@@ -4,6 +4,9 @@ import os
 import pickle
 import re
 import warnings
+from pathlib import Path
+
+import requests
 
 from . import WoWBuildUtils
 
@@ -65,12 +68,15 @@ class WoWTables(WoWBuildUtils):
                 return build
         raise RuntimeError('No build found with major version %d' % self.major)
 
-    def get_db_table(self, table):
+    def get_db_table(self, table, locale: str = None):
+        if not locale:
+            locale = self.locale
+
         build = self.get_table_build(table)
         print('Get table %s for build %s' % (table, build))
         url = '%s/dbc/export/?name=%s&build=%s' % (self.wow_tools_host, table, build)
-        if self.locale:
-            url += '&locale=%s' % self.locale
+        if locale:
+            url += '&locale=%s' % locale
         response = self.get(url)
         if response.status_code == 200:
             return csv.DictReader(response.text.splitlines())
@@ -97,21 +103,22 @@ class WoWTables(WoWBuildUtils):
 class WowTablesCache(WoWTables):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._cache_path = os.getenv('TABLE_CACHE_PATH', '')
-        if self.locale != 'enUS':
-            self._cache_path = os.path.join(self._cache_path, self.locale)
+        self._cache_path = Path(os.getenv('TABLE_CACHE_PATH', ''))
 
-    def get_db_table(self, table):
+    def get_db_table(self, table, locale=None):
+        if not locale:
+            locale = self.locale
+
         build = self.get_table_build(table)
-        cache_folder = os.path.join(self._cache_path, build)
+        cache_folder = self._cache_path.joinpath(locale, build)
+        cache_file = cache_folder.joinpath(table).with_suffix('.pickle')
 
-        cache_file = os.path.join(cache_folder, '%s.pickle' % table)
-        if os.path.exists(cache_file):
-            with open(cache_file, 'rb') as fp:
+        if cache_file.exists():
+            with cache_file.open('rb') as fp:
                 return pickle.load(fp)
         else:
-            data = list(super().get_db_table(table))
-            os.makedirs(cache_folder, exist_ok=True)
-            with open(cache_file, 'wb') as fp:
+            data = list(super().get_db_table(table, locale))
+            cache_folder.mkdir(parents=True, exist_ok=True)
+            with cache_file.open('wb') as fp:
                 pickle.dump(data, fp)
             return data
