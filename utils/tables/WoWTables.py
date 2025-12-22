@@ -17,6 +17,8 @@ class WoWTables(WoWBuildUtils):
         self.build_number = build_number
         self.locale = locale or 'enUS'
         self.branch, self.major = self.translate_build(self.game_version)
+        if self.locale != 'enUS':
+            self.select_build()
 
     @staticmethod
     def translate_build(product):
