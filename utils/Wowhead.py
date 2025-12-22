@@ -9,28 +9,28 @@ from . import WoWBuildUtils
 
 
 class Wowhead(WoWBuildUtils):
-    def query(self, url=None, domain=None, element=None, key=None, uri=None):
-        if not domain:
-            if os.getenv('GAME_VERSION'):
-                domains = {
-                    'classic': 'classic',
-                    'bcc': 'tbc',
-                    'wrath': 'wotlk',
-                    'cata': 'cata',
-                    'mists': 'mop-classic',
-                    'retail': 'www'
-                }
-                if os.getenv('GAME_VERSION') not in domains:
-                    raise ValueError('Unknown game version %s' % os.getenv('GAME_VERSION'))
-                else:
-                    domain = domains[os.getenv('GAME_VERSION')]
-            elif os.getenv('WOWHEAD_DOMAIN'):
-                domain = os.getenv('WOWHEAD_DOMAIN')
-            else:
-                domain = 'tbc'
+    paths = {
+        'classic': 'classic',
+        'bcc': 'tbc',
+        'wrath': 'wotlk',
+        'cata': 'cata',
+        'mists': 'mop-classic',
+        'retail': ''
+    }
+
+    def query(self, url=None, game=None, element=None, key=None, uri=None):
+        if not game:
+            game = self.game_version or os.getenv('GAME_VERSION') or 'tbc'
+
+        if game not in self.paths:
+            raise ValueError('Unknown game version %s' % game)
+        else:
+            domain = self.paths[game]
 
         if not url:
-            url = 'https://www.wowhead.com/%s' % domain
+            url = 'https://www.wowhead.com'
+            if domain != '':
+                url += '/%s' % domain
             if element and key:
                 url += '/%s=%d' % (element, key)
             elif element:
