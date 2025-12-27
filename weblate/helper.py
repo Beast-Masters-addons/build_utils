@@ -7,8 +7,9 @@ from wlc import Weblate
 
 language_mappings = {
     'en': 'enUS',
-    'zh_Hans': 'zh_TW',
-    'zh_Hant': 'zh_CN'
+    'ko': 'koKR',
+    'zh_Hans': 'zhTW',
+    'zh_Hant': 'zhCN'
 }
 
 dotenv.load_dotenv()
