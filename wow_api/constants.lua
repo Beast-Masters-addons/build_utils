@@ -66,3 +66,41 @@ if CreateColor ~= nil then
         v.colorStr = v:GenerateHexColor();
     end
 end
+
+--https://warcraft.wiki.gg/wiki/BagID
+_G.Enum = { BagIndex = {} }
+_G.Constants = { InventoryConstants = {} }
+
+Enum.BagIndex.Backpack = 0
+Enum.BagIndex.Bag_1 = 1
+Enum.BagIndex.Bag_2 = 2
+Enum.BagIndex.Bag_3 = 3
+Enum.BagIndex.Bag_4 = 4
+Enum.BagIndex.ReagentBag = 5
+if os.getenv('GAME_VERSION') == 'retail' then
+    Enum.BagIndex.CharacterBankTab_1 = 6
+    Enum.BagIndex.CharacterBankTab_2 = 7
+    Enum.BagIndex.CharacterBankTab_3 = 8
+    Enum.BagIndex.CharacterBankTab_4 = 9
+    Enum.BagIndex.CharacterBankTab_5 = 10
+    Enum.BagIndex.CharacterBankTab_6 = 11
+    Enum.BagIndex.AccountBankTab_1 = 12
+    Enum.BagIndex.AccountBankTab_2 = 13
+    Enum.BagIndex.AccountBankTab_3 = 14
+    Enum.BagIndex.AccountBankTab_4 = 15
+    Enum.BagIndex.AccountBankTab_5 = 16
+    Enum.BagIndex.Characterbanktab = -2
+    Enum.BagIndex.Accountbanktab = -3
+    Constants.InventoryConstants.NumBankBagSlots = 5
+    Constants.InventoryConstants.NumCharacterBankSlots = 6
+    Constants.InventoryConstants.NumAccountBankSlots = 5
+    ITEM_INVENTORY_BANK_BAG_OFFSET = 5
+else
+    Enum.BagIndex.Bank = -1
+    Enum.BagIndex.Bankbag = -4
+    Constants.InventoryConstants.NumBankBagSlots = 7
+    ITEM_INVENTORY_BANK_BAG_OFFSET = 4
+end
+
+
+
