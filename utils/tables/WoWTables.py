@@ -28,7 +28,7 @@ class WoWTables(WoWBuildUtils):
         if product == 'classic':
             return 'wow_classic_era', 1
         elif product == 'bcc':
-            return 'wow_classic_era_ptr', 2
+            return 'wow_anniversary', 2
         elif product == 'wrath':
             return 'wow_classic', 3
         elif product == 'cata':
@@ -36,7 +36,7 @@ class WoWTables(WoWBuildUtils):
         elif product == 'mists':
             return 'wow_classic', 5
         elif product == 'retail':
-            return 'wow', 11
+            return 'wow', 12
         else:
             raise AttributeError('Unknown product name')
 
