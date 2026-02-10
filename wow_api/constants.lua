@@ -9,6 +9,7 @@ EXPANSION_NAME7 = "Battle for Azeroth"
 EXPANSION_NAME8 = "Shadowlands"
 EXPANSION_NAME9 = "Dragonflight"
 EXPANSION_NAME10 = "The War Within"
+EXPANSION_NAME11 = "Midnight"
 
 ZONE = "Zone"
 
