@@ -18,6 +18,8 @@ function GetBuildInfo()
         return "4.4.1", 57294, "Oct 25 2024", 40401
     elseif os.getenv('GAME_VERSION') == 'mists' then
         return "5.5.0", 61916, "Jul 8 2025", 50500
+    elseif os.getenv('GAME_VERSION') == 'forever' then
+        return "1.60.1", 70862, "Nov 6 2026", 160001
     else
         --return "9.0.1", "36492", "Oct 30 2020", 90001
         return "11.0.5", "57292", "Oct 25 2024", 110005
