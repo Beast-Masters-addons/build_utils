@@ -91,6 +91,14 @@ function UnitName(unit)
     end
 end
 
+function UnitNameUnmodified(unit)
+    return "Quad", "Beastmaster"
+end
+
+function GetCurrentRegionName()
+    return "EU"
+end
+
 function GetRealmName()
     return "Mirage Raceway"
 end
