@@ -32,7 +32,7 @@ elseif os.getenv('GAME_VERSION') == 'cata' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_CATACLYSM_CLASSIC
 elseif os.getenv('GAME_VERSION') == 'mists' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_MISTS_CLASSIC
-elseif os.getenv('GAME_VERSION') == _G.WOW_PROJECT_CAMELOT then
+elseif os.getenv('GAME_VERSION') == 'forever' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_CAMELOT
 elseif os.getenv('GAME_VERSION') == 'retail' then
     _G.WOW_PROJECT_ID = _G.WOW_PROJECT_MAINLINE
