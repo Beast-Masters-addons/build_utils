@@ -18,7 +18,7 @@ for file in os.scandir(folder):
     print('Build locale %s' % locale)
     file = os.path.join(folder, '%s.po' % locale)
     pofile = polib.pofile(file)
-    with open(file) as fp:
+    with open(file, encoding='utf8') as fp:
         matches = re.search(r'nplurals=([0-9]); plural=(.+);', fp.read())
 
     entries = {}
