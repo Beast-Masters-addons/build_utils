@@ -22,6 +22,8 @@ def convert_language_code(language_code: str):
         return language_code + language_code.upper()
     elif len(language_code) == 5:
         return language_code[:2] + language_code[3:]
+    elif re.match(r'[a-z]{2}[A-Z]{2}', language_code):
+        return language_code
     else:
         raise RuntimeError("Unable to convert language code %s" % language_code)
 
